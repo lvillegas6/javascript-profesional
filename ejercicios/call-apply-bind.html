@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scope</title>
+</head>
+<body>
+    <a href="/ejercicios/">Go back</a>
+    <u>
+        <li><button class="call-to-action">Aprender</button></li>
+        <li><button class="call-to-action">Aprender más</button></li>
+        <li><button class="call-to-action">¡Nunca pares de aprender!</button></li>
+    </u>
+    <script>
+        //Establece "this" usando 'call'
+        function saludar(){
+            console.log(`Hola, soy ${this.nombre} ${this.apellido}`)
+        }
+        const luis = {
+            nombre: 'Luis',
+            apellido: 'Villegas'
+        }
+
+        saludar.call(luis)
+
+        //Establece "this" usando "call" y pasar argumentos a la función
+        function caminar(metros, direccion){
+            console.log(`${this.nombre} camina ${metros} metros hacia ${direccion}`)
+        }
+
+        caminar.call(luis, 400, 'norte')
+
+        //Establece "this" usando "apply" y pasar argumentos a la funcion
+        caminar.apply(luis, [800, 'sur'])
+
+        /*
+        'C'all - comma
+        'A'pply - arreglo
+        */
+
+        //establecer "this"  en una nueva funcion usando 'bind'
+        const daniel = {nombre: 'Daniel', apellido: 'Sanchez'}
+        const saludarADaniel = saludar.bind(daniel);
+        saludarADaniel();
+
+        //const danielCaminar = caminar.bind(daniel, 600, 'Norte'); //asi me permite guardar los valores de los argumentos (recordarlos)
+        //const danielCaminar = caminar.bind(daniel, 600); //Podemos guardar argumentos parciales (no es necesario colocarlos todos)
+        //danielCaminar('norte');
+
+        const danielCaminar = caminar.bind(daniel);
+        danielCaminar(600, 'norte');
+
+        //Cuando es util usar uno de estos métodos
+
+        //console.log([1,2].__proto__)
+
+        //document.getEle... me retorna un NodeList se parecen a los arreglos pero no tienen algunos metodos por ejemplo en forEech
+        const buttons = document.getElementsByClassName("call-to-action");
+        // buttons.forEach(button =>{
+        //     button.onclick = () => alert('Nunca pares de aprender');
+        // })
+        Array.prototype.forEach.call(buttons, button =>{
+             button.onclick = () => alert('Nunca pares de aprender');
+        })
+
+    </script>
+
+</body>
+</html>
