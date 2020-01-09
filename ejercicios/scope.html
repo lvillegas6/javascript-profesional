@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scope</title>
+</head>
+<body>
+    <a href="/ejercicios/">Go back</a>
+
+    <script>
+        //Global scope
+        //var message = 'Hello, Platzi!'; //Toda funcion que declaremos fuera de una funcion de un bloque, tendrá el scope global.
+        
+        //Function Scope - algo parecido a los clousure
+        // function printNumber(){
+        //     var i;
+        //     for(i = 0; i < 10; i++){
+        //         function eventuallyPrintNumber(n){ //Cuando le pasamos algun valor en "n" en cada instancia o ejecucion de 
+        //                                             //la funcion(cuando le pasamos i), estamos entrando en un scope nuevo, y en este scope se va a recordar el valor que tenia "n" en ese momento que se ejecuto la funcion
+        //             setTimeout(() => {
+        //                 console.log(n)
+        //             }, 100);
+        //         }
+
+        //         eventuallyPrintNumber(i);
+        //     }
+        // }
+
+        // printNumber();
+
+        //Block Scope let - const
+        function printNumber(){
+
+            for(let i = 0; i < 10; i++){
+            
+                setTimeout(() => {
+                    console.log(i)
+                }, 100);
+            }
+        }
+
+        printNumber();
+        //Module Scope Limita el alcance, no salen del archivo, es decir el codigo solo vive en ese archivo
+    </script>
+
+</body>
+</html>
