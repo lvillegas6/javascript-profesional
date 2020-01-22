@@ -110,18 +110,23 @@
 
         //new es un atajo(azucar sintactica) para llevar Hero.prototype al objeto
         function Hero(name){
-            // const hero = Object.create(Hero.prototype);
-            this.name = name;
-            // return hero
+            
+            console.log(Hero.prototype)
+            const hero = Object.create(Hero.prototype);
+            console.log(hero)
+            console.log('----------------------')
+            hero.name = name;
+            console.log(hero)
+             return hero
         }
 
         Hero.prototype.saludar = function(){
             console.log(`New: ${this.name}`)
          }
-        const zelda = new Hero('zelda')
+        const zelda = Hero('zelda')
         zelda.saludar();
 
-        const link = new Hero('Link')
+        const link = Hero('Link')
         link.saludar()
     </script>
 

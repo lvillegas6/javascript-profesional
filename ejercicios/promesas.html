@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"content="width=device-width,initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible"content="ie=edge">
+  <title>Promises</title>
+</head>
+
+<body>
+
+  <ul>
+    <li><button id="sequence">Get Top Movies in Sequence</button></li>
+    <li><button id="parallel">Get Top Movies in Parallel</button></li>
+    <li><button id="fastest">Get Fastest Top Movie</button></li>
+  </ul>
+
+  <ul id="movies"></ul>
+
+  <script>
+    const apiKey = '2ce013b7754ed52002975e7ffcca3e1d';
+
+    async function getMovie(id) {
+        const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
+        //return fetch(url).then(response => response.json())
+        const response = await fetch(url)
+        return response.json()
+        //return data;
+    }
+
+    async function getPopularMovies() {
+        const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${apiKey}`
+        // return fetch(url)
+        //     .then(response => response.json())
+        //     .then(data => data.results);
+        const response = await fetch(url)
+        const data = await response.json()
+        return data.results;
+    }
+
+    async function getTopMoviesIds(n = 3) {
+
+        // return getPopularMovies().then(popularMovies =>
+        //     popularMovies.slice(0, n).map(movie => movie.id)
+        // );
+    
+        const popularMovies = await getPopularMovies();
+        return popularMovies.slice(0, n).map(movie => movie.id);
+    }
+
+    function renderMovies(movies) {
+        const movieList = document.getElementById('movies');
+        movieList.innerHTML = '';
+
+        movies.forEach(movie => {
+          const listItem = document.createElement('li');
+          listItem.innerHTML = `
+            <img src="https://image.tmdb.org/t/p/w342${movie.poster_path}" />
+            <h5>${movie.title}</h5>
+            <p>Released on <em>${movie.release_date}</em></p>
+            `;
+
+          movieList.appendChild(listItem);
+        });
+    }
+
+    async function getTopMoviesInSequence() {
+
+        const ids = await getTopMoviesIds()
+        const movies = []
+
+        for(const id of ids){
+
+            const movie = await getMovie(id)
+            movies.push(movie)
+
+        }
+
+        return movies;
+    }
+
+    async function getTopMoviesInParallel() {
+
+        const ids = await getTopMoviesIds()
+        const movies = ids.map(id => getMovie(id))
+
+        return Promise.all(movies);
+    }
+
+    async function getFastestTopMovie() {
+        const ids = await getTopMoviesIds()
+        const movies = ids.map(id => getMovie(id))
+
+        return Promise.race(movies)
+    }
+
+    document.getElementById('sequence').onclick = async function() {
+        const movies = await getTopMoviesInSequence();
+        renderMovies(movies);
+        
+    };
+
+    document.getElementById('parallel').onclick =  async function() {
+      const movies = await getTopMoviesInParallel();
+      renderMovies(movies);
+    };
+
+    document.getElementById('fastest').onclick = async function() {
+      const movie = await getFastestTopMovie();
+      renderMovies([movie]);
+    };
+
+  </script>
+</body>
+
+</html>
