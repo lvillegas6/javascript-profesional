@@ -91,7 +91,8 @@
     async function getFastestTopMovie() {
         const ids = await getTopMoviesIds()
         const movies = ids.map(id => getMovie(id))
-
+        
+        //Race regresa solo la promesa que se resuelva primero.
         return Promise.race(movies)
     }
 
