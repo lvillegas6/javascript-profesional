@@ -8,8 +8,15 @@ const player = new MediaPlayer({element: video, plugins: [
     new AutoPlay(),
     new AutoPause()
 ] });
-
+    
 const button = document.querySelector('#playButton');
 const buttonMute = document.querySelector('#muteButton');
 button.onclick = () => player.togglePlay();
 buttonMute.onclick = () => player.toggleMute();
+
+if('serviceWorker' in navigator){
+                                //Vamos a registrar un archivo
+    navigator.serviceWorker.register('/sw.js').catch(error =>{
+        console.log(error.message)
+    })
+}
