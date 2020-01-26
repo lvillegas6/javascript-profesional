@@ -9,17 +9,36 @@
 <body>
     <script>
 
-        const methods = {
+        const target = {
 
-            saludar: function(){
-                console.log('Hola')
+            nombre: 'Luis',
+            apellido: 'Villegas',
+    
+        }
+
+        const handler = {
+
+            set(objeto, propiedad, value){
+                if(propiedad in objeto){
+                    objeto[propiedad] = value
+                }
+            },
+
+            get(objeto, propiedad){
+
+                if(!(propiedad in objeto)){
+                    console.log(`La propiedad ${propiedad} no esta en el objeto`)
+                }
+
+
+                return objeto[propiedad]
             }
 
         }
 
-        const object = Object.create(methods);
-        object.name = 'Luis'
-       
+        const persona = new Proxy(target, handler);
+
+
 
     </script>
 </body>

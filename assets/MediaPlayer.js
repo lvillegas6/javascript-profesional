@@ -9,7 +9,7 @@ function MediaPlayer(config) {
 MediaPlayer.prototype.initPlugins = function(){
     
     const player = {
-        play: () => this.play(), //Esto es se pasa como si fuera una referencia por lo tanto debemos ejecutarla despues utilizando los ()
+        play: () => this.play(), //Esto se pasa como si fuera una referencia por lo tanto debemos ejecutarla despues utilizando los ()
         pause: () => this.pause(),
         media: this.media,
         get muted(){
