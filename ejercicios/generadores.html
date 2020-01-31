@@ -10,7 +10,7 @@
     <a href="/ejercicios/">Go back</a>
     <script>
         //Los generadores son funciones de las que se puede salir y volver a entrar.
-        // Su contexto (asociacion de variables) sera conserado entre las reentradas.
+        //  
         // Cada vez que llamamos next, la ejecución del generador va a continuar hasta el proximo yield
         function* simpleGenerator(){
             console.log('GENERETOR START')
@@ -20,6 +20,8 @@
             console.log('GENERETOR END')
         }
 
+        
+       
         // Los generadores no son ejetutables de por si, tenemos que llamarla
         // Al llamarla nos va a crear una nueva funcion, que entonces si podemos ejecutar. 
             //const gen = simpleGenerator() //Para ejecutar ese generador debemos usar gen.next()
@@ -52,6 +54,12 @@
                 }
             }
         }
+
+        const g = idMakerWithReset()
+        console.log(g.next())
+        console.log(g.next())
+        console.log(g.next())
+        console.log(g.next(true))
 
         //Ahora hagamos un ejemplo un poco más complejo: la secuencia d fibonacci
 

@@ -40,7 +40,7 @@
             const response = await fetch(url, { signal: controller.signal})
             //blob es el binario que estamos pidiendo
             const blob = await response.blob()
-        
+         
             //No podemos pasar este binario directamente a una imagen, primero tenemos que pasarlo a una imagen
             // Lo hacemos asi:
             const imgUrl = URL.createObjectURL(blob)

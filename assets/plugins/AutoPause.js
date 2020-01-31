@@ -1,9 +1,9 @@
 class AutoPause {
 
-    constructor(){
+    constructor(threshold = 0.25){
         this.handlerIntersection = this.handlerIntersection.bind(this) //Con bind le decimos quien va a ser el this (forzamos) a que siempre sea la clase.
         this.handleVisibilityChange = this.handleVisibilityChange.bind(this)
-        this.threshold = 0.25
+        this.threshold = threshold
     }
 
     run(player) {
@@ -20,8 +20,8 @@ class AutoPause {
 
     }
 
-    handlerIntersection(entries){
-
+    handlerIntersection(entries, observer){
+        
         const entry = entries[0]
 
         const isVisible = entry.intersectionRatio >= this.threshold

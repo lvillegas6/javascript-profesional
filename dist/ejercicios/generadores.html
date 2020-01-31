@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Generadores</title>
+</head>
+<body>
+    <a href="/ejercicios/">Go back</a>
+    <script>//Los generadores son funciones de las que se puede salir y volver a entrar.
+//  
+// Cada vez que llamamos next, la ejecución del generador va a continuar hasta el proximo yield
+function* simpleGenerator() {
+  console.log('GENERETOR START');
+  yield 1;
+  yield 2;
+  yield 3;
+  console.log('GENERETOR END');
+} // Los generadores no son ejetutables de por si, tenemos que llamarla
+// Al llamarla nos va a crear una nueva funcion, que entonces si podemos ejecutar. 
+//const gen = simpleGenerator() //Para ejecutar ese generador debemos usar gen.next()
+//gen.next() //me va a devolver un objeto con un valor y un bool que indica si se termino o no
+//Podemos hacer generadores infinitos
+
+
+function* idMaker() {
+  let id = 1;
+
+  while (true) {
+    yield id;
+    id++;
+  }
+} //  Quizas queremos devolver la id con el valor de 1
+// Para hacer eso, debemos pasar un parametro a next
+// Cuando llamamos next tambien podemos pasar valores que la funcion recibe
+
+
+function* idMakerWithReset() {
+  let id = 1;
+  let reset;
+
+  while (true) {
+    reset = yield id; //le pasaremos un booleano
+
+    if (reset) {
+      id = 1;
+    } else {
+      id++;
+    }
+  }
+}
+
+const g = idMakerWithReset();
+console.log(g.next());
+console.log(g.next());
+console.log(g.next());
+console.log(g.next(true)); //Ahora hagamos un ejemplo un poco más complejo: la secuencia d fibonacci
+
+function* fibonacci() {
+  let a = 1;
+  let b = 1;
+
+  while (true) {
+    // los generadores: Siempre recordandose del scope donde estaba 
+    yield a;
+    let temp = a;
+    a = b;
+    b = temp + b;
+  }
+}</script>
+</body>
+</html>

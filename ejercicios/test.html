@@ -9,35 +9,50 @@
 <body>
     <script>
 
-        const target = {
+        // const target = {
 
-            nombre: 'Luis',
-            apellido: 'Villegas',
+        //     nombre: 'Luis',
+        //     apellido: 'Villegas',
     
+        // }
+
+        // const handler = {
+
+        //     set(objeto, propiedad, value){
+        //         if(propiedad in objeto){
+        //             objeto[propiedad] = value
+        //         }
+        //     },
+
+        //     get(objeto, propiedad){
+
+        //         if(!(propiedad in objeto)){
+        //             console.log(`La propiedad ${propiedad} no esta en el objeto`)
+        //         }
+
+
+        //         return objeto[propiedad]
+        //     }
+
+        // }
+
+        // const persona = new Proxy(target, handler);
+
+
+        class M{
+            
         }
 
-        const handler = {
+        class dev {
 
-            set(objeto, propiedad, value){
-                if(propiedad in objeto){
-                    objeto[propiedad] = value
-                }
-            },
+        }
 
-            get(objeto, propiedad){
+        class persona extends M(dev) {
 
-                if(!(propiedad in objeto)){
-                    console.log(`La propiedad ${propiedad} no esta en el objeto`)
-                }
-
-
-                return objeto[propiedad]
+            static saludo(){
+                console.log('Hola')
             }
-
         }
-
-        const persona = new Proxy(target, handler);
-
 
 
     </script>
