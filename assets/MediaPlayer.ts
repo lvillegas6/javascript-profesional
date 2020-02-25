@@ -3,11 +3,20 @@ class MediaPlayer { //Si no usamos el keyword class TypeScript no lo va a concid
 
     public media: HTMLMediaElement
     private plugins: Array<any>
+    container: HTMLElement
 
     constructor(config) {
         this.media = config.element;
         this.plugins = config.plugins || [];
+        this.initPlayer()
         this.initPlugins();
+    }
+
+    private initPlayer(){
+        this.container = document.createElement('div')
+        this.container.style.position = 'relative'
+        this.media.parentNode.insertBefore(this.container, this.media)
+        this.container.appendChild(this.media)
     }
 
     private initPlugins() {
