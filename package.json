@@ -8,7 +8,7 @@
     "platzi"
   ],
   "scripts": {
-    "start": "parcel index.html ejercicios/*.html ejercicios/typescript/*"
+    "start": "parcel index.html ejercicios/*.html ejercicios/**/*.html"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.4",
