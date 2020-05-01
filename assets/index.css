@@ -39,15 +39,15 @@ main {
 
 
 .ads {
-  padding: 4px;
-  padding-right: 8px;
-  background: white;
-  width: 80%;
+  background:rgba(0, 0, 0, 0.2);
 
   position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 0;
+  right: 0;
+  left: 0; 
+  
+  padding: 1rem 1.5rem;
+
 }
 
 .ads__link {

@@ -1,3 +1,5 @@
+//Es un pratron de tipo Comportamiento
+
 interface Observer {
     update: (data: any) => void
 }

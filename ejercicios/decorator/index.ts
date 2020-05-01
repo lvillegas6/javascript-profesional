@@ -1,3 +1,5 @@
+//Patron decorator forma parte de los patrones estructurales
+
 class Field {
     errors: string[]
     input: HTMLInputElement
@@ -13,6 +15,7 @@ class Field {
         this.input.addEventListener('input', () => {
             this.errors = []
             this.validate()
+            console.log(field.errors)
             errorMessage.innerText = this.errors[0] || ''
 
         })

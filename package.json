@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Proyecto del Curso Profesional de JavaScript de la Escuela de JavaScript de Platzi.",
   "license": "MIT",
-  "author": "Richard B. Kaufman López <richardbkaufman@gmail.com>",
+  "author": "Luis Villegas <luisvillegassanchez6@gmail.com>",
   "keywords": [
     "platzi"
   ],
@@ -12,8 +12,8 @@
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.4",
-    "typescript": "^3.7.5"
-  },  
+    "typescript": "^3.8.3"
+  },
   "browserslist": [
     "last 1 Chrome version"
   ]
